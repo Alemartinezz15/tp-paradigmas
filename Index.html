@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La mejor solución para tu vehículo - Lubricentro y Electromecánica Martinez</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Vincular el archivo CSS -->
+</head>
+
+<body>
+    <header> <!-- Encabezado -->
+
+        <hr>
+        <img src="Imagenes/logo.png" alt="Logo de Lubricentro Martinez" width="800" height="160"> <!-- Logo -->
+
+        <hr>
+
+        <!-- Menú de Navegación -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="html/nosotros.html">Nosotros</a></li>
+                <li><a href="html/contacto.html">Contacto</a></li>
+                <li><a href="html/listado_tabla.html">Catálogo</a></li>
+                <li><a href="html/comprar.html">Compra</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+        <!-- Secciones del sitio -->
+
+        <section class="hero">
+            <div class="hero-text">
+                <h2>UN FILTRO
+                    <br>
+                    PARA CADA NECESIDAD
+                </h2>
+                <a href="html/listado_tabla.html">
+                    <button>CATÁLOGO ONLINE</button>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Alejandro Martinez. Todos los derechos reservados.</p>
+
+    </footer>
+
+    <script>
+
+        document.body.addEventListener('click', function () {
+            const colors = ['lightgrey', 'lightblue', 'lightgreen', 'lightyellow'];
+            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        });
+    </script>
+</body>
+
+</html>
