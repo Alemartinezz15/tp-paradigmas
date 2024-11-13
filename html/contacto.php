@@ -7,6 +7,7 @@
     <title>Contacto - Lubricentro y Electromecánica Martinez</title>
     <!-- Vincular el archivo CSS -->
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/contacto.css">
 </head>
 
 <body>
@@ -20,9 +21,9 @@
         <!-- Menú de Navegación -->
         <nav>
             <ul>
-                <li><a href="../Index.html">Inicio</a></li>
-                <li><a href="../html/nosotros.html">Nosotros</a></li>
-                <li><a href="../html/listado_tabla.html">Catalogo</a></li>
+                <li><a href="../Index.php">Inicio</a></li>
+                <li><a href="../html/nosotros.php">Nosotros</a></li>
+                <li><a href="../html/listado_box.php">Catálogo</a></li>
             </ul>
 
         </nav>
@@ -32,12 +33,12 @@
     <main> <!-- Sección principal -->
 
         <h2>Contacto</h2>
-        <p>Si deseas ponerte en contacto con nosotros, puedes utilizar cualquiera de los siguientes medios:</p>
+        <p class="contacto-intro">Si deseas ponerte en contacto con nosotros, puedes utilizar cualquiera de los siguientes medios:</p>
 
         <!-- Información de contacto -->
         <section id="informacion-contacto">
             <p><strong>Teléfono:</strong> 3764672650</p>
-            <p><strong>Email:</strong> contacto@lubricentromartinez.com</p>
+            <p><strong>Email:</strong> contacto@electromartinez.com</p>
         </section>
         
         <!-- Horarios de atención -->

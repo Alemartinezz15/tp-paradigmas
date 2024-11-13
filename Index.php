@@ -1,3 +1,21 @@
+<?php 
+session_start(); 
+
+if (isset($_SESSION['message'])) {
+    echo "<p>" . $_SESSION['message'] . "</p>";
+    unset($_SESSION['message']); 
+}
+
+if (isset($_SESSION['user_role'])) {
+    if ($_SESSION['user_role'] == 'admin') {
+        echo "<a href='html/admin.php'>Ir al panel de administrador</a>";
+    }
+    echo "<p>Bienvenido, " . $_SESSION['user_name'] . "!</p>";
+}
+
+include 'conexion.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,7 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La mejor solución para tu vehículo - Lubricentro y Electromecánica Martinez</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Vincular el archivo CSS -->
+    <link rel="stylesheet" href="css/styles.css"> 
 </head>
 
 <body>
@@ -20,11 +38,14 @@
         <!-- Menú de Navegación -->
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="html/nosotros.html">Nosotros</a></li>
-                <li><a href="html/contacto.html">Contacto</a></li>
-                <li><a href="html/listado_tabla.html">Catálogo</a></li>
-                <li><a href="html/comprar.html">Compra</a></li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="html/nosotros.php">Nosotros</a></li>
+                <li><a href="html/contacto.php">Contacto</a></li>
+                <li><a href="html/listado_box.php">Catálogo</a></li>
+                <li><a href="html/login.php">Ingreso </a></li>
+                <li><a href="php/logout.php">Cerrar sesión</a></li>
+              
+
             </ul>
         </nav>
 
@@ -38,7 +59,7 @@
                     <br>
                     PARA CADA NECESIDAD
                 </h2>
-                <a href="html/listado_tabla.html">
+                <a href="html/listado_box.php">
                     <button>CATÁLOGO ONLINE</button>
                 </a>
             </div>
@@ -50,14 +71,6 @@
         <p>&copy; 2024 Alejandro Martinez. Todos los derechos reservados.</p>
 
     </footer>
-
-    <script>
-
-        document.body.addEventListener('click', function () {
-            const colors = ['lightgrey', 'lightblue', 'lightgreen', 'lightyellow'];
-            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        });
-    </script>
 </body>
 
 </html>

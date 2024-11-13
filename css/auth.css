@@ -1,0 +1,83 @@
+/* auth.css */
+
+/* General para formularios */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los encabezados de los formularios */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para las secciones de formularios */
+.form-section {
+    margin-bottom: 30px;
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Estilos para los labels */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Estilo para el botón de submit */
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Cambio de color al pasar el ratón sobre el botón */
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para las validaciones (alertas) */
+.alert {
+    color: #ff0000;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Estilos para la alineación del formulario */
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Asegurar que el formulario no se desborde en pantallas pequeñas */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+}
