@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'admin') {
     exit();
 }
 
-
 if (isset($_GET['editar'])) {
     $id = $_GET['editar'];
     $stmt = $conn->prepare("SELECT * FROM productos WHERE id = ?");
@@ -26,9 +25,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actualizar'])) {
     $categoria = $_POST['categoria'];
     $precio = $_POST['precio'];
     $disponibilidad = $_POST['disponibilidad'];
+    
+    // Procesar la imagen
+    $imagen = '';
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
+        $ruta_destino = 'C:/xampp/htdocs/tp/img_crud/' . basename($_FILES['imagen']['name']);
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
+            $imagen = $ruta_destino;
+        }
+    }
 
-    $stmt = $conn->prepare("UPDATE productos SET nombre = ?, categoria = ?, precio = ?, disponibilidad = ? WHERE id = ?");
-    $stmt->bind_param("ssdsi", $nombre, $categoria, $precio, $disponibilidad, $id);
+    if ($imagen) {
+        $stmt = $conn->prepare("UPDATE productos SET nombre = ?, categoria = ?, precio = ?, disponibilidad = ?, imagen = ? WHERE id = ?");
+        $stmt->bind_param("ssdssi", $nombre, $categoria, $precio, $disponibilidad, $imagen, $id);
+    } else {
+        $stmt = $conn->prepare("UPDATE productos SET nombre = ?, categoria = ?, precio = ?, disponibilidad = ? WHERE id = ?");
+        $stmt->bind_param("ssdsi", $nombre, $categoria, $precio, $disponibilidad, $id);
+    }
 
     if ($stmt->execute()) {
         header("Location: " . $_SERVER['PHP_SELF']);
@@ -45,9 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear'])) {
     $categoria = $_POST['categoria'];
     $precio = $_POST['precio'];
     $disponibilidad = $_POST['disponibilidad'];
+    
+    // Procesar la imagen
+    $imagen = '';
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
+        $ruta_destino = 'C:/xampp/htdocs/tp/img_crud/' . basename($_FILES['imagen']['name']);
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
+            $imagen = $ruta_destino;
+        }
+    }
 
-    $stmt = $conn->prepare("INSERT INTO productos (nombre, categoria, precio, disponibilidad) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssds", $nombre, $categoria, $precio, $disponibilidad);
+    $stmt = $conn->prepare("INSERT INTO productos (nombre, categoria, precio, disponibilidad, imagen) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssdss", $nombre, $categoria, $precio, $disponibilidad, $imagen);
 
     if ($stmt->execute()) {
         header("Location: " . $_SERVER['PHP_SELF']);
@@ -84,6 +106,7 @@ if (isset($_GET['eliminar'])) {
     <title>CRUD Productos - Lubricentro Martinez</title>
     <link rel="stylesheet" href="../css/listado_tabla.css">
     <link rel="stylesheet" href="../css/styles.css">
+
 </head>
 
 <body>
@@ -105,7 +128,8 @@ if (isset($_GET['eliminar'])) {
         <!-- Formulario para crear o editar producto -->
         <section>
             <h2><?php echo isset($producto) ? 'Editar Producto' : 'Crear Producto'; ?></h2>
-            <form id="productoForm" method="post">
+            <form id="productoForm" method="post" enctype="multipart/form-data">
+
                 <input type="hidden" name="id" value="<?php echo isset($producto) ? $producto['id'] : ''; ?>">
                 
                 <label for="nombre">Nombre:</label>
@@ -122,6 +146,9 @@ if (isset($_GET['eliminar'])) {
                     <option value="En Stock" <?php if (isset($producto) && $producto['disponibilidad'] == 'En Stock') echo 'selected'; ?>>En Stock</option>
                     <option value="Agotado" <?php if (isset($producto) && $producto['disponibilidad'] == 'Agotado') echo 'selected'; ?>>Agotado</option>
                 </select><br>
+
+                <label for="imagen">Imagen:</label>
+                <input type="file" name="imagen" accept="image/*"><br>
 
                 <button type="submit" name="<?php echo isset($producto) ? 'actualizar' : 'crear'; ?>">
                     <?php echo isset($producto) ? 'Actualizar Producto' : 'Agregar Producto'; ?>
@@ -141,6 +168,7 @@ if (isset($_GET['eliminar'])) {
                         <th>Precio</th>
                         <th>Disponibilidad</th>
                         <th>Acciones</th>
+                        <th>Imagen</th>
                     </tr>
                 </thead>
                 <tbody id="productosTabla">
@@ -160,11 +188,18 @@ if (isset($_GET['eliminar'])) {
                                 <td>
                                     <a href='?editar=" . $row["id"] . "'>Editar</a> | 
                                     <a href='?eliminar=" . $row["id"] . "' onclick=\"return confirm('¿Estás seguro de que deseas eliminar este producto?');\">Eliminar</a>
-                                </td>
-                            </tr>";
+                                </td>";
+                            
+                            // Mostrar imagen del producto
+                            if (isset($row['imagen']) && $row['imagen'] != '') {
+                                echo "<td><img src='/tp/img_crud/" . basename($row['imagen']) . "' alt='Imagen del producto' width='50'></td>";
+                            } else {
+                                echo "<td>Sin imagen</td>";
+                            }
+                            echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='6'>No hay productos disponibles</td></tr>";
+                        echo "<tr><td colspan='7'>No hay productos disponibles</td></tr>";
                     }
                     ?>
                 </tbody>

@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Productos en Caja - Lubricentro Martinez</title>
 
-    <!-- Vinculación del CSS -->
     <link rel="stylesheet" href="../css/styles.css">
 
     <!-- Vinculación de Font Awesome para el ícono de WhatsApp -->
@@ -149,12 +148,10 @@
 
         triggers.forEach(trigger => {
             trigger.addEventListener('click', function () {
-                lightboxImg.src = this.src; // Establecer la fuente de la imagen en el lightbox
-                lightbox.style.display = 'flex'; // Mostrar el lightbox
-            });
+                lightboxImg.src = this.src; 
+                lightbox.style.display = 'flex'; 
         });
 
-        // Cerrar el lightbox al hacer clic en él
         lightbox.addEventListener('click', function () {
             lightbox.style.display = 'none'; // Ocultar el lightbox
         });

@@ -29,7 +29,7 @@
     <main>
         
         <!-- Carrusel de Trabajos Realizados -->
-<h2>Guía de Trabajos Realizados</h2>
+<h2>Galería de Trabajos Realizados</h2>
 <div class="carousel">
     <div class="carousel-inner">
         <figure>
