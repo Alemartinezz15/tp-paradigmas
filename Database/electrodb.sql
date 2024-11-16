@@ -1,5 +1,5 @@
-CREATE DATABASE electrodb
-USE electrodb
+CREATE DATABASE electrodb;
+USE electrodb;
 
 CREATE TABLE productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,6 +8,7 @@ CREATE TABLE productos (
     precio DECIMAL(10, 2) NOT NULL,
     disponibilidad ENUM('En Stock', 'Agotado') DEFAULT 'En Stock',
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ALTER TABLE productos ADD imagen VARCHAR(255)
 );
 
 CREATE TABLE productos_auditoria (
@@ -21,7 +22,7 @@ CREATE TABLE productos_auditoria (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE usuarios (
+CREATE TABLE usuarios (}
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,

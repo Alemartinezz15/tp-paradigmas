@@ -6,6 +6,12 @@
     <title>Nosotros - Lubricentro y Electromecánica Martinez</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/nosotros.css">
+
+    <!-- Agregar estilos y jQuery -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 </head>
 
 <body>
@@ -26,34 +32,27 @@
     </header>
 
     <!-- Contenido de la Página -->
-    <main>
-        
-        <!-- Carrusel de Trabajos Realizados -->
-<h2>Galería de Trabajos Realizados</h2>
-<div class="carousel">
-    <div class="carousel-inner">
-        <figure>
-            <img src="../Imagenes/imagen1.jpg" alt="Cambio de aceite" width="600px" height="380" class="carousel-img fade-in">
-            <figcaption>Cambio de aceite en vehículo</figcaption>
-        </figure>
-        <figure>
-            <img src="../Imagenes/imagen3.jpg" alt="Diagnóstico de aire acondicionado" width="600px" height="380" class="carousel-img">
-            <figcaption>Diagnóstico de sistema de aire acondicionado</figcaption>
-        </figure>
-        <figure>
-            <img src="../Imagenes/imagen4.jpg" alt="Reemplazo de Condensador" width="600px" height="380" class="carousel-img">
-            <figcaption>Reemplazo de condensador de aire acondicionado</figcaption>
-        </figure>
-    </div>
-    <button class="prev" onclick="prevSlide()">&#10094;</button>
-    <button class="next" onclick="nextSlide()">&#10095;</button>
-    <!-- Indicadores de Carrusel -->
-    <div class="carousel-indicators">
-        <button onclick="setSlide(0)" class="active"></button>
-        <button onclick="setSlide(1)"></button>
-        <button onclick="setSlide(2)"></button>
-    </div>
-</div>
+    <!-- Contenido de la Página -->
+        <main>
+                    <!-- Carrusel de Trabajos Realizados -->
+                <h2>Galería de Trabajos Realizados</h2>
+                 <div class="carousel">
+             <div class="carousel-inner">
+            <figure>
+                <img src="../Imagenes/imagen1.jpg" alt="Cambio de aceite" width="100%" height="auto">
+                <figcaption>Cambio de aceite en vehículo</figcaption>
+            </figure>
+            <figure>
+                <img src="../Imagenes/imagen3.jpg" alt="Diagnóstico de aire acondicionado" width="100%" height="auto">
+                <figcaption>Diagnóstico de sistema de aire acondicionado</figcaption>
+            </figure>
+            <figure>
+                <img src="../Imagenes/imagen4.jpg" alt="Reemplazo de Condensador" width="100%" height="auto">
+                <figcaption>Reemplazo de condensador de aire acondicionado</figcaption>
+            </figure>
+            </div>
+                </div>
+
 
         <h3>Nosotros</h3>
         <p>En Lubricentro y Electromecánica Martinez, nos especializamos en ofrecer productos y servicios de alta
@@ -73,10 +72,6 @@
             <li>Diagnóstico y reparación de aire acondicionado</li>
             <li>Venta de lubricantes, repuestos y servicios de electromecánica</li>
         </ul>
-
-        
-</div>
-
     </main>
 
     <!-- Enlace de regreso a la página principal -->
@@ -87,42 +82,18 @@
 
     <!-- JavaScript para el Carrusel -->
     <script>
-       let slideIndex = 0;
-const slides = document.querySelectorAll(".carousel-img");
-const totalSlides = slides.length;
-const indicators = document.querySelectorAll(".carousel-indicators button");
-
-function showSlide(index) {
-    slides.forEach((img, i) => {
-        img.style.display = i === index ? "block" : "none";
-        img.classList.toggle("fade-in", i === index);
-    });
-    indicators.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-    });
-}
-
-function nextSlide() {
-    slideIndex = (slideIndex + 1) % totalSlides;
-    showSlide(slideIndex);
-}
-
-function prevSlide() {
-    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-    showSlide(slideIndex);
-}
-
-function setSlide(index) {
-    slideIndex = index;
-    showSlide(slideIndex);
-}
-
-// Inicia el carrusel y cambia automáticamente cada 5 segundos
-showSlide(slideIndex);
-setInterval(nextSlide, 5000);
-
+        $(document).ready(function() {
+            $('.carousel-inner').slick({
+                dots: true,          
+                infinite: true,      
+                speed: 500,          
+                slidesToShow: 1,     
+                autoplay: true,      
+                autoplaySpeed: 3000, 
+                arrows: true         
+            });
+        });
     </script>
-
 </body>
 
 </html>
